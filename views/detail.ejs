@@ -1,0 +1,39 @@
+<%- include("./partials/header")%>
+<style>
+    .img-responsive {
+    width: 280px;
+    height: 380px;
+  }
+  </style>
+    <div class="container">
+        <%if(data['Rated']==='PG-13'){%>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div>Please watch under parental guidance</div>
+                <button type="button" class="close " data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <%}%>
+        <div class="card m-auto" style="width: 45rem;">
+            <div class="card-header bg-dark text-light">
+                <h1>Movie Info</h1>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <img class="m-1 border border-dark rounded img-responsive" src="<%=data.Poster%>" 
+                    onerror="this.onerror=null; this.src='./public/assets/error.png';" alt=" image missing">
+                </div>
+                <div class="card-body col-6">
+                    <h2 class="card-title"><%=data.Title%></h2>
+                    <h6><i>Cast: <%=data.Actors%></i></h6>
+                    <p class="card-text"><%=data.Plot%></p>
+                    <ul class="list-group list-group-flush">
+                        <%data['Ratings'].forEach(function(rating){%>
+                            <li class="list-group-item bg-light"><%=rating.Source%> - <%=rating.Value%></li>
+                        <%})%>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include("./partials/footer")%>
