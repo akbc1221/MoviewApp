@@ -13,12 +13,10 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/result',(req,res)=>{
-    //res.send(`You searched for ${req.query.movieName}`);
     const url = `http://www.omdbapi.com/?apikey=fdff6de8&s=${req.query.movieName}`;
     request(url,(error,response,body)=>{
         if(!error && response.statusCode===200){
             const data = JSON.parse(body);
-            // res.send(data);
             res.render('result',{movies: data});
         }else{
             res.send("Something went wrong");
