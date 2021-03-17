@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const request = require('request');
+const dotenv = require('dotenv');
 const PORT = process.env.PORT || 5000 ;
+
+dotenv.config();
 
 // api key :==> http://www.omdbapi.com/?i=tt3896198&apikey=fdff6de8
 //middleware
@@ -13,7 +16,7 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/result',(req,res)=>{
-    const url = `http://www.omdbapi.com/?apikey=fdff6de8&s=${req.query.movieName}`;
+    const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${req.query.movieName}`;
     request(url,(error,response,body)=>{
         if(!error && response.statusCode===200){
             const data = JSON.parse(body);
@@ -26,7 +29,7 @@ app.get('/result',(req,res)=>{
 
 //
 app.get('/result/:id',(req,res)=>{
-    const url = `http://www.omdbapi.com/?apikey=fdff6de8&i=${req.params.id}`;
+    const url = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${req.params.id}`;
     request(url,(error,response,body)=>{
         if(!error && response.statusCode===200){
             const data = JSON.parse(body);
@@ -39,7 +42,7 @@ app.get('/result/:id',(req,res)=>{
 
 
 //handle undefined paths
-app.get('/*',(req,res)=>{
+app.get('*',(req,res)=>{
     res.send("Error 404");
 });
 
