@@ -30,7 +30,6 @@ app.get('/result/:id',(req,res)=>{
     request(url,(error,response,body)=>{
         if(!error && response.statusCode===200){
             const data = JSON.parse(body);
-            // res.send(data);
             res.render('detail',{data: data});
         }else{
             res.send("Something went wrong");
