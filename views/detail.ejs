@@ -4,7 +4,16 @@
     width: 280px;
     height: 380px;
   }
-  </style>
+</style>
+    <div class="mt-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:history.go(-1)">results</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><%=data.Title%></li>
+            </ol>
+        </nav>
+    </div>
     <div class="container">
         <%if(data['Rated']==='PG-13'){%>
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -16,7 +25,7 @@
         <%}%>
         <div class="card m-auto" style="width: 45rem;">
             <div class="card-header bg-dark text-light">
-                <h1>Movie Info</h1>
+                <h2><%=data.Title%></h2>
             </div>
             <div class="row">
                 <div class="col-4">
@@ -24,7 +33,7 @@
                     onerror="this.onerror=null; this.src='./public/assets/error.png';" alt=" image missing">
                 </div>
                 <div class="card-body col-6">
-                    <h2 class="card-title"><%=data.Title%></h2>
+                    <!-- <h2 class="card-title"></h2> -->
                     <h6><i>Cast: <%=data.Actors%></i></h6>
                     <p class="card-text"><%=data.Plot%></p>
                     <ul class="list-group list-group-flush">
